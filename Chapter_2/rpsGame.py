@@ -120,13 +120,13 @@ def display_score(rpsDict: dict) -> None:
     Args:
         rpsDict (dict): dictionary with game info for rps game.
     """
-    scores = rpsDict["score"]
-    message = ""
+    scores, message = rpsDict["score"], ""
+
     for score in scores.items():
         message += f"{score[1]} {score[0].title()}, "
-    message = message.rstrip(", ")
-    print(message)
+
+    print(message.rstrip(", "))
 
 
 if __name__ == "__main__":
-    rpsDict = play_rps()
+    play_rps()
