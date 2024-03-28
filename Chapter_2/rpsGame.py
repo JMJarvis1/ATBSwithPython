@@ -25,7 +25,7 @@ def print_title(rpsDict: dict) -> None:
     print(f"\n{title.rstrip(', ').upper()}\n")
 
 
-def run_game_loop(rpsDict):
+def run_game_loop(rpsDict:dict) -> None:
     while True:
         move_menu = "\nEnter your move: (r)ock, (p)aper, (s)cissors, or (q)uit\n"
         playerMove = input(move_menu).lower()
@@ -40,7 +40,7 @@ def run_game_loop(rpsDict):
         compare_moves(rpsDict, playerMove, computerMove)
 
 
-def quit_game(rpsDict):
+def quit_game(rpsDict:dict) -> None:
 
     if sum(rpsDict["score"].values()) > 0:
         print("\n****** Final Score *****\n")
@@ -49,7 +49,7 @@ def quit_game(rpsDict):
         sys.exit()
 
 
-def compare_moves(rpsDict, playerMove, computerMove):
+def compare_moves(rpsDict:dict, playerMove:str, computerMove:str) -> None:
 
     # Tuple holding location of player and comp. moves relative to rpsDict location
     moves = (
@@ -72,17 +72,17 @@ def compare_moves(rpsDict, playerMove, computerMove):
     display_score(rpsDict)
 
 
-def display_moves(rpsDict, moves):
+def display_moves(rpsDict:dict, moves:tuple) -> None:
     message = f"\n{rpsDict['choice'][moves[0]].upper()} versus...\n"
     message += f"{rpsDict['choice'][moves[1]].upper()}\n"
     print(message)
 
 
-def score_game(rpsDict: dict, condition: str):
+def score_game(rpsDict:dict, condition:str) -> None:
     rpsDict["score"][condition] += 1
 
 
-def display_score(rpsDict):
+def display_score(rpsDict:dict) -> None:
     scores = rpsDict["score"]
     message = ""
     for score in scores.items():
