@@ -6,10 +6,11 @@ import math
 
 def flipCoins():
     COIN_SIDES = ("T", "H")  # "Tails"/"Heads"
-    FLIPS = 10_000  # Number of flips to peform.
+    FLIPS = 100  # Number of flips to peform.
+    REPEATS =  10_000
     STREAK_LENGHTH = 6  # Length of run to count as a streak (T/H)
 
-    results = generateFlips(FLIPS, COIN_SIDES)
+    results = generateFlips(FLIPS, REPEATS, COIN_SIDES)
     winRatios, winCounts = getWinData(results)  # [Tails%, Heads%]
     streakCount, streakMax = getStreakData(STREAK_LENGHTH, results)
 
@@ -18,11 +19,12 @@ def flipCoins():
     )
 
 
-def generateFlips(flips, coinSides) -> list:
+def generateFlips(flips, repeats, coinSides) -> list:
     """Generate a list holding the outcome of a set number of coin flips."""
     results = []
-    for flip in range(flips):
-        results.append(random.choice(coinSides))
+    for repeats in range(repeats):
+        for flip in range(flips):
+            results.append(random.choice(coinSides))
     return results
 
 
@@ -95,10 +97,10 @@ def displayStats(
     message += f"Wins: {winCounts[1]}\n\t\t"
     message += f"Win %: {winRatios[0]:.2f}\t\t"
     message += f"Win %:({winRatios[1]:.2f})\t\n\t\t"
-    message += f"Number of streaks: {streakCount[0]}\t"
-    message += f"Number of streaks: {streakCount[1]}\n\t\t"
+    message += f"# Streaks (>6): {streakCount[0]}\t"
+    message += f"# Streaks (>6): {streakCount[1]}\n\t\t"
     message += f"Longest Streak: {StreakMax[0]}\t"
-    message += f"Longest Streak: {StreakMax[1]}\t"
+    message += f"Longest Streak: {StreakMax[1]}\t "
     message += gridVisualization(results)
 
     print(message)
@@ -107,11 +109,11 @@ def displayStats(
 
 
 def gridVisualization(results) -> str:
-    sampleResults = random.sample(results, 1000)
+    sampleResults = random.sample(results, 100)
     gridWidth = int(2 * (math.sqrt(len(sampleResults))))
     gridHeight = int((math.sqrt(len(sampleResults))) / 2)
 
-    grid = "\n\n"
+    grid = f"\n\n{'*' * 5}A Random Sample of 1000 Flips from the Above Results.{'*' * 5}\n\n"
 
     i = 0
     for y in range(gridHeight):
