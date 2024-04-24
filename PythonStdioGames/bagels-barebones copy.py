@@ -19,11 +19,11 @@ def main():
     """)
 
     # Make the secret number the player needs to guess:
-    numbers = list("0123456789")  # Create a list of digits (0 - 9)
-    random.shuffle(numbers)  # Shuffle them into a random order
+    numbers = [num for num in range(10)]  # Create list of numbers 0-9
+    random.shuffle(numbers)  # Randomly arrange list of numbers
 
-    # Get the first three digits in the list for the secret number
-    secretNum = str(numbers[0]) + str(numbers[1] + str(numbers[2]))
+    # Get first 3 numbers from list for secret number
+    secretNum = str(numbers[0]) + str(numbers[1]) + str(numbers[2])
 
     print("""
     I have thought of a secret number.
@@ -33,7 +33,7 @@ def main():
     numGuesses = 1
 
     while numGuesses <= 10:
-        print(f"Guess #: {numGuesses}")
+        print(f"Guess #{numGuesses}")
         guess = input("> ")
 
         clues = getClues(guess, secretNum)
@@ -41,34 +41,31 @@ def main():
         numGuesses += 1
 
         if guess == secretNum:
-            break  # They're correct, so break out of this loop
-        if numGuesses > 10:
-            print(f"""You ran out of guesses.
-                  The answer was {secretNum}.""")
+            break  # Victory condition, end loop
+        elif numGuesses > 10:
+            print("You are out of guesses.")
+            print(f"The secret number was {secretNum}" "")
 
-        print("Thanks for playing!")
+    print("Thanks for playing!")
 
 
 def getClues(guess, secretNum):
-    """Returns a string with the Pico, Fermi, Bagel clues for a guess
-    and secret number pair."""
-
+    """Returns a string with Pico, Fermi, Bagel or win if number is
+    guessed correctly"""
     if guess == secretNum:
-        return "You got it!"
+        return "You guessed correctly!"
 
     clues = ""
     for i in range(3):
         if guess[i] == secretNum[i]:
-            # A correct digit is in the correct place.
-            clues += "Fermi "
+            clues += "Fermi "  # A correct digit is in its correct place
         elif guess[i] in secretNum:
-            # A correct digit is in the wrong place.
-            clues += "Pico "
+            clues += "Pico "  # A correct digit is not in its correct place
 
     if len(clues) == 0:
-        return "Bagels"  # There are no correct digits at all.
+        return "Bagels"  # There are no correct digits
     else:
-        # Make a single string from the list of string clues.
+        # Make a single string from a list of string clues.
         return clues
 
 
