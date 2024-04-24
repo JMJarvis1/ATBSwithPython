@@ -1,20 +1,18 @@
-#! python3 
+#! python3
 # bulletPointAdder.py - Adds Wikipedia buller points to the start
 # of each line of text on the clipboard.
 
 import pyperclip
 
 # TODO: Use pyperclip locally to complete project
-text = "Lists of animals\nLists of aquarium lif\nLists of biologists by author abbreviation\nList of cultivars" #pyperclip.paste()
+text = pyperclip.paste()
 
 
-lines = text.split('\n')
+lines = text.split("\n")
 
-for i in range(len(lines)): # Loop through all indexes in the 'lines' list
-    lines[i] = f"*{lines[i]}"
-    
-text = '\n'.join(lines)
+for i in range(len(lines)):  # Loop through all indexes in the 'lines' list
+    lines[i] = f"* {lines[i]}"
 
-print(text)
+text = "\n".join(lines)
 
-#pyperclip.copy(text)
+pyperclip.copy(text)
