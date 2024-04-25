@@ -43,7 +43,7 @@ def main():
             playerHand.append(newCard)
 
             if getHandValue(playerHand) > 21:
-                continue  # The Player has busted
+                break  # The Player has busted
         elif move == "S":
             break  # Staying ends the player turn
 
@@ -66,7 +66,7 @@ def main():
 
     if dealerValue > 21:
         print("Dealer busts! You won!")
-    elif (playerValue > 21) or (playerValue < dealerValue):
+    elif playerValue > 21 or (playerValue < dealerValue):
         print("You bust.")
     elif playerValue > dealerValue:
         print("You won!")
@@ -90,8 +90,8 @@ def getHandValue(allCards):
         rank = card[0]
         if rank == "A":
             numberOfAces += 1  # Aces are worth at least 1.
-        elif rank in ["K", "Q", "J"]:  # Face cards are worth 10.
-            value += 10
+        elif rank in ["K", "Q", "J"]:
+            value += 10  # Face cards are worth 10.
         elif rank in ["2", "3", "4", "5", "6", "7", "8", "9", "10"]:
             value += int(rank)  # Numbered cards are worth their number.
 

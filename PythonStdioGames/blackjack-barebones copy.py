@@ -52,11 +52,11 @@ def main():
         while getHandValue(dealerHand) < 17:
             print("Dealer hits...")
             dealerHand.append(deck.pop())
-            displayHands(playerHand, [["??", "?"]] + dealerHand[1])
+            displayHands(playerHand, [["??", "?"]] + dealerHand[1:])
 
             if getHandValue(dealerHand) > 21:
                 break  # Dealer has busted
-            input("Press enter to continue...")
+            input("Press enter to continue...\n\n")
 
     # Show the final hands:
     displayHands(playerHand, dealerHand)
@@ -111,13 +111,13 @@ def displayCards(allCards):
     for card in allCards:
         rank = card[0]
         suit = card[1]
-        rows[0] += " ___ "  # The row to display for the top of each card
+        rows[0] += " ___  "  # The row to display for the top of each card
         rows[1] += f"|{rank.ljust(2)} | "
         rows[2] += f"| {suit} | "
         rows[3] += f"|_{rank.rjust(2, '_')}| "
 
-        for row in rows:
-            print(row)
+    for row in rows:
+        print(row)
 
 
 # Call the main() function to play the game:
