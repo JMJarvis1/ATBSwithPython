@@ -97,7 +97,7 @@ def main():
 
         sys.stdout.flush()  # Required for bext using programs
 
-        # time.sleep(0.002)
+        time.sleep(0.002)
 
 
 if __name__ == "__main__":
