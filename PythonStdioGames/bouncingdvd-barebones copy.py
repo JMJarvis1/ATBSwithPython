@@ -24,25 +24,26 @@ def main():
         "dir": random.choice(directions),
     }
 
+    # Make sure x is even so it can hit the corner
     if logo["x"] % 2 == 1:
-        logo["x"] -= 1  # Make sure x is even so it can hit the corner
+        logo["x"] -= 1
 
-    while True:  # Main program looop.
+    while True:  # Main program loop.
         # Erase the logo's current location:
         bext.goto(logo["x"], logo["y"])
-        print("   ", end="")  # (!) Try commenting this line out.
+        # print("   ", end="")  # Overwrites current location with spaces
 
         originalDirection = logo["dir"]
 
         # See if the logo bounces off the corners:
         if logo["x"] == 0 and logo["y"] == 0:
             logo["dir"] = "DR"
-        elif logo["x"] == 0 and logo["y"] == HEIGHT - 1:
+        elif logo["x"] == 0 and logo["y"] == (HEIGHT - 1):
             logo["dir"] = "UR"
-        elif logo["x"] == HEIGHT - 3 and logo["y"] == 0:
+        elif logo["x"] == (WIDTH - 3) and logo["y"] == 0:
             logo["dir"] = "DL"
-        elif logo["x"] == HEIGHT - 3 and logo["y"] == HEIGHT - 1:
-            logo["dir"] = "UL"
+        elif logo["x"] == (WIDTH - 3) and logo["y"] == (HEIGHT - 1):
+            logo["x"] = "UL"
 
         # See if the logo bounces off of the left edge:
         elif logo["x"] == 0 and logo["dir"] == "UL":
@@ -58,7 +59,6 @@ def main():
             logo["dir"] = "DL"
 
         # See if the logo bounces off of the top edge:
-        # (HEIGHT - 1) because DVD is one line in heght
         elif logo["y"] == 0 and logo["dir"] == "UR":
             logo["dir"] = "DR"
         elif logo["y"] == 0 and logo["dir"] == "UL":
@@ -66,28 +66,28 @@ def main():
 
         # See if the logo bounces off of the bottom edge:
         # (HEIGHT - 1) because DVD is one line in heght
-        elif logo["y"] == (HEIGHT - 1) and logo["dir"] == "DL":
-            logo["dir"] = "UL"
         elif logo["y"] == (HEIGHT - 1) and logo["dir"] == "DR":
             logo["dir"] = "UR"
+        elif logo["y"] == (HEIGHT - 1) and logo["dir"] == "DL":
+            logo["dir"] = "UL"
 
+        # Change the color when the logo bounces
         if logo["dir"] != originalDirection:
-            # Change the color when the logo bounces
             logo["color"] = random.choice(colors)
 
         # Move the logo. (X moves by two because the terminal characters are twice as
         # tall as they are wide.)
+        if logo["dir"] == "UL":
+            logo["x"] -= 2
+            logo["y"] -= 1
+        elif logo["dir"] == "DL":
+            logo["x"] -= 2
+            logo["y"] += 1
         elif logo["dir"] == "UR":
             logo["x"] += 2
             logo["y"] -= 1
-        elif logo["dir"] == "UL":
-            logo["x"] -= 2
-            logo["y"] -= 1
         elif logo["dir"] == "DR":
             logo["x"] += 2
-            logo["y"] += 1
-        elif logo["dir"] == "DL":
-            logo["x"] -= 2
             logo["y"] += 1
 
         # Draw the logo at it's new location:
@@ -95,7 +95,8 @@ def main():
         bext.fg(logo["color"])
         print("DVD", end="")
 
-        sys.stdout.flush()  # Required for bext using programs
+        # Required for bext using programs
+        sys.stdout.flush()
 
         time.sleep(0.002)
 
