@@ -1,3 +1,4 @@
 Bext==0.1.1
 colorama==0.4.5
 pyperclip==1.8.2
+zombiedice==0.1.6
