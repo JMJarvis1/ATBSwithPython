@@ -6,15 +6,12 @@ import re
 
 # TODO build regex fo date recognition
 
-datePattern = re.compile(r"""
-    ([a-zA-z]{3,9}(\.)?|\d{4})    # first segment   
-    ((-|\/|(\.)?\s)*              # separator
-    ([0-9]{1,2}[stnd.]*)          # Day or Month
-    ((-|\/|[\.,])(\s)?)           # separator
-    (([a-zA-z]{3,9}(\.)?)?        # month name (Apr./April)
-    ([0-3]{,1}[0-9])?             # month numeric
-    (\d{4}|)?)$                   # year numeric   
-""") 
+datePatterns = {
+    "m/d/y": "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[012])[-/.]((19|20)\d{2})$",
+    "d/m/y": "", 
+    "yyyy/mm/dd": "^(19|20)\d{2}[/ -. ](0[1-9]|1[012])[/ -. ](0[1-9]|[12][1-9]|3[01])$",
+
+}
 
 # TODO convert dates to 00/00/0000 format
 
