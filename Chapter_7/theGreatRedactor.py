@@ -1,7 +1,6 @@
 #! python3
 """ Searches for sensitive information and replaces it with redacted text """
 
-from operator import sub
 import re
 import sys
 
@@ -33,8 +32,6 @@ def main(): # main program loop
             )""", re.VERBOSE)
     }
 
-    # 
-    
     text = """
        Name: John Jarvis
       Phone: +1 (734) 255-6699
@@ -60,11 +57,6 @@ def matchObjects(regexDict, text):
     for key, regex in regexDict.items():
         redacted = regex.sub(substitutions[key], redacted,)
     return redacted            
-
-
-
-
-
 
 if __name__ == "__main__":
     try:
