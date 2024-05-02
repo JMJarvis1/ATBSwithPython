@@ -14,10 +14,6 @@ def main():
 
     dateRegex = {pattern:getDateRegexPatterns(pattern) for pattern in datePatterns}
     matches = []
-    
-    
-    
-
 
     # TODO convert dates to 00/00/0000 format
     text = """
@@ -32,7 +28,6 @@ def main():
             elif pattern.startswith('y'):
                 date = '/'.join([groups[4], groups[6], groups[1]])
             matches.append(date) 
-            
             
 
     for date in matches:
