@@ -27,7 +27,6 @@ def main():
                 date = '/'.join([groups[4], groups[6], groups[1]])
             matches.append(date) 
             
-            
 
     for date in matches:
         print(date)
