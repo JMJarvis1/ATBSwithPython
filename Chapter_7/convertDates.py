@@ -4,20 +4,14 @@
 
 import re
 import sys
-from tokenize import group
 
 def main():
     # TODO build regex fo date recognition
 
     datePatterns = ["mmddyyyy","yyyymmdd",]
-    
 
     dateRegex = {pattern:getDateRegexPatterns(pattern) for pattern in datePatterns}
     matches = []
-    
-    
-    
-
 
     # TODO convert dates to 00/00/0000 format
     text = """
