@@ -1,4 +1,6 @@
 Bext==0.1.1
 colorama==0.4.5
+PyInputPlus==0.2.12
 pyperclip==1.8.2
-zombiedice==0.1.6
+PySimpleValidate==0.2.12
+stdiomask==0.0.6
