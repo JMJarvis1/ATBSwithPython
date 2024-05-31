@@ -1,0 +1,28 @@
+
+Results for testText_1.txt:
+  Line 23:
+	Casanova, Cosette: 10-01-2042
+  Line 125:
+	Fleming, Tyne: 01.09.2042
+  Line 148:
+	Milford, Eartha: 10.31.2042
+
+Results for testText_2.txt:
+  Line 104:
+	Constancy, Marina: 11.30.2042
+  Line 118:
+	Marni, Shelbi: 07/31/2042
+
+Results for testText_4.txt:
+  Line 358:
+	Tay, Nanon: 12-06-2042
+  Line 385:
+	Meisel, Estella: 05-30-2042
+
+Results for testText_3.txt:
+  Line 20:
+	Tonya, Fania: 02-03-2042
+  Line 68:
+	Hays, Margaux: 11.31.2042
+  Line 178:
+	Dickman, Margo: 02/30/2042

@@ -3,5 +3,5 @@ colorama==0.4.5
 PyInputPlus==0.2.12
 pyperclip==1.8.2
 PySimpleValidate==0.2.12
+rstr==3.2.2
 stdiomask==0.0.6
-
