@@ -15,7 +15,6 @@
 from pathlib import Path
 import glob
 import os
-from pyclbr import Class
 import random
 
 
